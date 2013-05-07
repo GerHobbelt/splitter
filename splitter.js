@@ -1,35 +1,5 @@
-/*
- * jQuery.splitter.js - two-pane splitter window plugin
- *
- * version 1.63 (2012/12/06) 
- * 
- * Dual licensed under the MIT and GPL licenses: 
- *   http://www.opensource.org/licenses/mit-license.php 
- *   http://www.gnu.org/licenses/gpl.html 
- */
- 
-/**
- * The splitter() plugin implements a two-pane resizable splitter window.
- * The selected elements in the jQuery object are converted to a splitter;
- * each selected element should have two child elements, used for the panes
- * of the splitter. The plugin adds a third child element for the splitbar.
- * 
- * For more details see: http://methvin.com/jquery/splitter/
- *
- *
- * @example $('#MySplitter').splitter();
- * @desc Create a vertical splitter with default settings 
- *
- * @example $('#MySplitter').splitter({type: 'h', accessKey: 'M'});
- * @desc Create a horizontal splitter resizable via Alt+Shift+M
- *
- * @name splitter
- * @type jQuery
- * @param Object options Options for the splitter (not required)
- * @cat Plugins/Splitter
- * @return jQuery
- * @author Dave Methvin (dave.methvin@gmail.com)
- */
+/*! Splitter.js v2.0.0 - License: https://github.com/thejameskyle/splitter/ */
+
  ;(function($){
 
 var splitterCounter = 0;
@@ -41,7 +11,7 @@ $.fn.splitter = function(args){
 		if ( $(this).attr("data-splitter-initialized") ) return
 		var zombie;		// left-behind splitbar for outline resizes
 		function resize_auto_fired() {
-  			// Returns true when the browser natively fires the resize 
+  			// Returns true when the browser natively fires the resize
   			// event attached to the panes elements
   			return ($.browser.msie && (parseInt($.browser.version) < 9));
 		}
@@ -67,11 +37,11 @@ $.fn.splitter = function(args){
 		function doSplitMouse(evt) {
 			var pos = A._posSplit+evt[opts.eventPos],
 				range = Math.max(0, Math.min(pos, splitter._DA - bar._DA)),
-				limit = Math.max(A._min, splitter._DA - B._max, 
+				limit = Math.max(A._min, splitter._DA - B._max,
 						Math.min(pos, A._max, splitter._DA - bar._DA - B._min));
 			if ( opts.outline ) {
 				// Let docking splitbar be dragged to the dock position, even if min width applies
-				if ( (opts.dockPane == A && pos < Math.max(A._min, bar._DA))  || 
+				if ( (opts.dockPane == A && pos < Math.max(A._min, bar._DA))  ||
 					 (opts.dockPane == B && pos > Math.min(pos, A._max, splitter._DA - bar._DA - B._min)) ) {
 					bar.addClass(opts.barDockedClass).css(opts.origin, range);
 				}
@@ -79,7 +49,7 @@ $.fn.splitter = function(args){
 					bar.removeClass(opts.barDockedClass).css(opts.origin, limit);
 				}
 				bar._DA = bar[0][opts.pxSplit];
-			} else 
+			} else
 				resplit(pos);
 			setBarState(pos == limit? opts.barActiveClass : opts.barLimitClass);
 		}
@@ -110,7 +80,7 @@ $.fn.splitter = function(args){
 				bar.removeClass(opts.barDockedClass);
 				bar._DA = bar[0][opts.pxSplit];
 				bar._pos = null;
-				pos = Math.max(A._min, splitter._DA - B._max, 
+				pos = Math.max(A._min, splitter._DA - B._max,
 						Math.min(pos, A._max, splitter._DA - bar._DA - B._min));
 			}
 			// Resize/position the two panes
@@ -134,9 +104,9 @@ $.fn.splitter = function(args){
 			splitter._DA = splitter[0][opts.pxSplit] - splitter._PBA;
 			// Bail if splitter isn't visible or content isn't there yet
 			if ( splitter._DF <= 0 || splitter._DA <= 0 ) return;
-			
-			// if nothing changed, no need to resize 
-			if (splitter._oldW == splitter.width() && splitter._oldH == splitter.height()) 
+
+			// if nothing changed, no need to resize
+			if (splitter._oldW == splitter.width() && splitter._oldH == splitter.height())
 				return; // nothing changed
 			splitter._oldW = splitter.width();
 			splitter._oldH = splitter.height();
@@ -146,7 +116,7 @@ $.fn.splitter = function(args){
 				splitter._DA-B[0][opts.pxSplit]-bar._DA));
 			setBarState(opts.barNormalClass);
 		}
-					
+
 		// Determine settings based on incoming opts, element classes, and defaults
 		var vh = (args.splitHorizontal? 'h' : args.splitVertical? 'v' : args.type) || 'v';
 		var opts = $.extend({
@@ -167,7 +137,7 @@ $.fn.splitter = function(args){
 			// user can override
 			v: {					// Vertical splitters:
 				keyLeft: 39, keyRight: 37, cursor: "e-resize",
-				barStateClass: "splitter-bar-vertical", 
+				barStateClass: "splitter-bar-vertical",
 				barDockedClass: "splitter-bar-vertical-docked"
 			},
 			h: {					// Horizontal splitters:
@@ -203,7 +173,7 @@ $.fn.splitter = function(args){
         // Focuser element, provides keyboard support; title is shown by Opera accessKeys
         var focuser = $('<a href="javascript:void(0)"></a>')
             .attr({accessKey: opts.accessKey, tabIndex: opts.tabIndex, title: opts.splitbarClass})
-            .bind(($.browser.opera?"click":"focus")+opts.eventNamespace, 
+            .bind(($.browser.opera?"click":"focus")+opts.eventNamespace,
                 function(){ this.focus(); bar.addClass(opts.barActiveClass) })
             .bind("keydown"+opts.eventNamespace, function(e){
                 var key = e.which || e.keyCode;
@@ -211,9 +181,9 @@ $.fn.splitter = function(args){
                 if ( dir )
                     resplit(A[0][opts.pxSplit]+dir*opts.pxPerKey, false);
             })
-            .bind("blur"+opts.eventNamespace, 
+            .bind("blur"+opts.eventNamespace,
                 function(){ bar.removeClass(opts.barActiveClass) });
-            
+
         // Splitbar element
         var bar = $('<div></div>')
             .insertAfter(A).addClass(opts.barClass).addClass(opts.barStateClass)
@@ -246,7 +216,7 @@ $.fn.splitter = function(args){
 			this._init = opts["size"+this._pane]===true ?
                 parseInt($.css(this[0],opts.split),10) : opts["size"+this._pane];
 		});
-		
+
 		// Determine initial position, get from cookie if specified
 		var initPos = A._init;
 		if ( !isNaN(B._init) )	// recalc initial B size as an offset from the top or left side
@@ -257,7 +227,7 @@ $.fn.splitter = function(args){
 			initPos = parseInt($.cookie(opts.cookie),10);
 			$(window).bind("unload"+opts.eventNamespace, function(){
 				var state = String(bar.css(opts.origin));	// current location of splitbar
-				$.cookie(opts.cookie, state, {expires: opts.cookieExpires || 365, 
+				$.cookie(opts.cookie, state, {expires: opts.cookieExpires || 365,
 					path: opts.cookiePath || document.location.pathname});
 			});
 		}
@@ -292,10 +262,10 @@ $.fn.splitter = function(args){
                     splitter.triggerHandler(pw?"dock":"undock");
 				})
 				.bind("dock"+opts.eventNamespace, function(){
-					var pw = A[0][opts.pxSplit]; 
+					var pw = A[0][opts.pxSplit];
 					if ( !pw ) return;
 					bar._pos = pw;
-					var x={}; 
+					var x={};
 					x[opts.origin] = opts.dockPane==A? 0 :
 						splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit];
 					bar.animate(x, opts.dockSpeed||1, opts.dockEasing, function(){
@@ -316,12 +286,12 @@ $.fn.splitter = function(args){
 			if ( opts.dockKey )
 				$('<a title="'+opts.splitbarClass+' toggle dock" href="javascript:void(0)"></a>')
 					.attr({accessKey: opts.dockKey, tabIndex: -1}).appendTo(bar)
-					.bind($.browser.opera?"click":"focus", function(){ 
+					.bind($.browser.opera?"click":"focus", function(){
                         splitter.triggerHandler("toggleDock"); this.blur();
 					});
             bar.bind("dblclick", function(){ splitter.triggerHandler("toggleDock"); })
 		}
-		
+
 		// Resize event handler; triggered immediately to set initial position
 		splitter
 			.bind("destroy"+opts.eventNamespace, function(){
