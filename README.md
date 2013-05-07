@@ -1,4 +1,8 @@
-jQuery Splitter
+# jQuery Splitter
+
+Fork History:
+  1. http://methvin.com/splitter/
+  2.
 
 This is a forked copy from from http://methvin.com/splitter/
 I've updated his splitter just a bit, to make it happier on modern jQuery.
