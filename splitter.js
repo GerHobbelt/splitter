@@ -1,5 +1,13 @@
 /*! Splitter.js v2.0.0 - License: https://github.com/thejameskyle/splitter/ */
 
+navigator.browserDetect = (function(){
+    var N= navigator.appName, ua= navigator.userAgent, tem;
+    var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+    if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+    M= M? [M[1], M[2]]: [N, navigator.appVersion, '-?'];
+    return M;
+})();
+
  ;(function($){
 
 var splitterCounter = 0;
@@ -13,7 +21,7 @@ $.fn.splitter = function(args){
 		function resize_auto_fired() {
   			// Returns true when the browser natively fires the resize
   			// event attached to the panes elements
-  			return ($.browser.msie && (parseInt($.browser.version) < 9));
+  			return ((navigator.browserDetect[0] === "msie") && (parseInt($navigator.browserDetect[1]) < 9));
 		}
 		function setBarState(state) {
 			bar.removeClass(opts.barStateClasses).addClass(state);
@@ -173,7 +181,7 @@ $.fn.splitter = function(args){
         // Focuser element, provides keyboard support; title is shown by Opera accessKeys
         var focuser = $('<a href="javascript:void(0)"></a>')
             .attr({accessKey: opts.accessKey, tabIndex: opts.tabIndex, title: opts.splitbarClass})
-            .bind(($.browser.opera?"click":"focus")+opts.eventNamespace,
+            .bind((navigator.browserDetect === "opera" ? "click" : "focus")+opts.eventNamespace,
                 function(){ this.focus(); bar.addClass(opts.barActiveClass) })
             .bind("keydown"+opts.eventNamespace, function(e){
                 var key = e.which || e.keyCode;
@@ -286,7 +294,7 @@ $.fn.splitter = function(args){
 			if ( opts.dockKey )
 				$('<a title="'+opts.splitbarClass+' toggle dock" href="javascript:void(0)"></a>')
 					.attr({accessKey: opts.dockKey, tabIndex: -1}).appendTo(bar)
-					.bind($.browser.opera?"click":"focus", function(){
+					.bind(navigator.browserDetect === "opera" ? "click" : "focus", function(){
                         splitter.triggerHandler("toggleDock"); this.blur();
 					});
             bar.bind("dblclick", function(){ splitter.triggerHandler("toggleDock"); })
