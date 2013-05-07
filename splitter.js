@@ -44,7 +44,10 @@ navigator.browserDetect = (function () {
         setBarState(opts.barActiveClass)
         // Safari selects A/B text on a move; iframes capture mouse events so hide them
         panes
-          .css('-webkit-user-select', 'none')
+          .css({
+            '-webkit-user-select': 'none',
+            'pointer-events': 'none'
+          })
           .find('iframe')
           .addClass(opts.iframeClass);
 
@@ -80,8 +83,13 @@ navigator.browserDetect = (function () {
           zombie = null;
           resplit(pos);
         }
-        panes.css('-webkit-user-select', 'text').find('iframe').removeClass(
-          opts.iframeClass);
+        panes
+          .css({
+            '-webkit-user-select': '',
+            'pointer-events': ''
+          })
+          .find('iframe')
+          .removeClass(opts.iframeClass);
         $(document)
           .unbind('mousemove' + opts.eventNamespace + ' mouseup' + opts.eventNamespace);
       }
