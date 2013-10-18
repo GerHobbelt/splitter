@@ -1,16 +1,18 @@
-jQuery Splitter
+# jQuery Splitter
 
-This is a forked copy from from http://methvin.com/splitter/
-I've updated his splitter just a bit, to make it happier on modern jQuery.
+This is a fork of the forked copy from from http://methvin.com/splitter/
 
-His version blows on on jQuery > 1.5. This version works on 1.7, which is the most recent as of posting.
+The original fork is at https://github.com/e1ven/jQuery-Splitter
 
-See also:
-http://stackoverflow.com/questions/10097458/splitter-js-wont-work-with-new-versions-of-jquery
+The original forked copy restored jQuery 1.7 compatibility. But jQuery
+1.9 removed `$.browser` therfore breaking the plugin.
 
-To fix it the right way, you'd want to comment out lines 63 and 64 - They are triggering an infinite event loop.
-Then, add e.stopPropagation(); on line 199, and stop the splitter resize event from bubbling back up to the window, which triggers a resize event, which triggers a resi...
-Yeah.
-This unfortunately stops the resize recursion entirely. To fix it right, we'd probably want to add something that replaces 63/64 to do it without triggering more resizes.
+This fork uses other means of browser detection to be compatible with
+jQuery 1.9 and 1.10.
 
-In the meantime, this should work around it, mainly by use of try/catch blocks.
+Apart from that, a few indentation changes and minor cleanup were
+performed to make jslint a bit more happy.
+
+I do not recommend to use this plugin for new projects. But legacy
+projects, that already use jquery.splitter and want to update their
+jQuery version may give it a shot.
