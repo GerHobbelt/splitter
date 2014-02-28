@@ -15,4 +15,11 @@ performed to make jslint a bit more happy.
 
 I do not recommend to use this plugin for new projects. But legacy
 projects, that already use jquery.splitter and want to update their
-jQuery version may give it a shot.
+jQuery version may give it a shot. I have no intend of maintaining this 
+plugin. I mangeld it enough to fit my specific use case. Therefore I
+really can't recommend basing any new project on this version of the
+plugin.
+
+I am also not aware of any good alternatives to this plugin. If possible, 
+try to avoid layouts, that use splitting panes in the
+first place. They are not that great UX wise to begin with...
