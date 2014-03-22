@@ -7,3 +7,8 @@ Desktop.ini
 
 # npm install
 node_modules/
+.sizecache.json
+
+# editor
+*~
+*.bak
