@@ -70,3 +70,12 @@ http://www.dreamchain.com/split-pane/
 https://github.com/shagstrom/split-pane
 and I decided to go for it.
 
+
+
+----
+
+
+## @jhbwood's version says:
+
+This is an updated version of Dave Methvin's jQuery splitter plugin, updated to work with jQuery 1.8. It has not been tested extensively. Use at your own risk.
+
