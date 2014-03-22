@@ -3,7 +3,7 @@
 
 #### Why should you use this version of jQuery Splitter?
 
-The previous forks of this repository are outdated and haven't remained active in development. This version will soon be up to date working with the latest 1.X and 2.X versions of jQuery.
+The previous forks of this repository are outdated and haven't remained active in development. This version is working with the latest 1.X and 2.X versions of jQuery.
 
 ----
 
