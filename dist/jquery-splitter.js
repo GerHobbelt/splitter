@@ -1,4 +1,10 @@
-/*! ... */
+/*! jQuery Splitter - v2.0.1 - 2014-03-22
+ * http://jquery.com
+ * Includes: splitter.js
+ * Copyright 2014 Dave Methvin and other contributors
+ * Licensed MIT, GPL
+ */
+
 
 /**
  * jQuery.splitter.js - two-pane splitter window plugin
