@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>jQuery Vertical Splitter</title>
 <script type="text/javascript" src="../lib/jquery.js"></script>
-<script type="text/javascript" src="../lib/jquery.cookie.js"></script>
 <script type="text/javascript" src="../splitter.js"></script>
 
 <!-- General page styles (not critical to the demos) -->
@@ -54,11 +53,11 @@ body {
  * mouse is over the splitter or the splitter is focused
  * via the keyboard taborder or an accessKey. 
  */
-#MySplitter .vsplitbar {
+#MySplitter .splitter-bar-vertical {
 	width: 6px;
 	background: #aca url(img/vgrabber.gif) no-repeat center;
 }
-#MySplitter .vsplitbar.active {
+#MySplitter .splitter-bar-vertical.active {
 	background: #da8 url(img/vgrabber.gif) no-repeat center;
 	opacity: 0.7;
 }
@@ -69,9 +68,10 @@ $().ready(function() {
 	$("#MySplitter").splitter({
 		type: "v",
 		outline: true,
-		minLeft: 100, sizeLeft: 150, minRight: 100,
+		minLeft: 100, 
+		sizeLeft: 150, 
+		minRight: 100,
 		resizeToWidth: true,
-		cookie: "vsplitter",
 		accessKey: 'I'
 	});
 });

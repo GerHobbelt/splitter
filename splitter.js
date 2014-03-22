@@ -83,7 +83,10 @@
                 // Safari selects A/B text on a move; iframes capture mouse events so hide them
                 panes
                 .css({
-                    '-webkit-user-select': 'none',
+                    "user-select": "none",
+                    "-webkit-user-select": "none",
+                    "-khtml-user-select": "none",
+                    "-moz-user-select": "none",
                     'pointer-events': 'none'
                 })
                 .find('iframe')
@@ -131,7 +134,13 @@
                     resplit(pos);
                 }
                 panes
-                .css("-webkit-user-select", "text")
+                .css({
+                    "user-select": "text",
+                    "-webkit-user-select": "text",
+                    "-khtml-user-select": "text",
+                    "-moz-user-select": "text",
+                    'pointer-events': 'auto'
+                })
                 .find("iframe")
                 .removeClass(opts.iframeClass);
                 $(document)

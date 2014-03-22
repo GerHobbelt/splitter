@@ -56,13 +56,13 @@ body {
  * mouse is over the splitter or the splitter is focused
  * via the keyboard taborder or an accessKey. 
  */
-#MySplitter .hsplitbar {
+#MySplitter .splitter-bar-horizontal {
 	height: 6px;
-	background: #cca url(hgrabber.gif) no-repeat center;
+	background: #cca url(img/hgrabber.gif) no-repeat center;
 	/* No margin, border, or padding allowed */
 }
-#MySplitter .hsplitbar.active, #MySplitter .hsplitbar:hover {
-	background: #e88 url(hgrabber.gif) no-repeat center;
+#MySplitter .splitter-bar-horizontal.active, #MySplitter .splitter-bar-horizontal:hover {
+	background: #e88 url(img/hgrabber.gif) no-repeat center;
 }
 </style>
 <script type="text/javascript">
@@ -78,7 +78,7 @@ $().ready(function() {
 <body>
 <h1>jQuery Horizontal Splitter</h1>
 <p>
-<a href="default.html">See the splitter documentation</a>
+<a href="index.html">See the splitter documentation</a>
 </p>
 <div id="MySplitter">
 

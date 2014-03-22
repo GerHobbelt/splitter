@@ -89,7 +89,7 @@ for the changes from previous versions.</strong>
 #MySplitter div {
 	overflow: auto;
 }
-.vsplitbar {
+.splitter-bar-vertical {
 	width: 5px;
 	background: #aaa;
 }
@@ -170,7 +170,7 @@ for the changes from previous versions.</strong>
 
 <h2>Styling the splitbar</h2>
 
-<p>When the plugin initializes the splitter, it creates the splitbar element that goes between the two panes. It automatically assigns the class vsplitbar to vertical splitters and hsplitbar to horizontal ones. You can change the class name by passing the splitbarClass string to the plugin.</p>
+<p>When the plugin initializes the splitter, it creates the splitbar element that goes between the two panes. It automatically assigns the class splitter-bar-vertical to vertical splitters and splitter-bar-horizontal to horizontal ones. You can change the class name by passing the splitbarClass string to the plugin.</p>
 
 <p>By default, when the mouse is over the splitbar it changes to a two-headed arrow cursor in the direction of motion (e-resize or n-resize). The <a href="vsplitter2.html">Skinny Splitbar</a> demo shows how to add a cursor property to the splitbar's stylesheet rule to override this.</p>
 
@@ -198,18 +198,9 @@ When a splitbar move is in progress, the plugin adds the <code>activeClass</code
 When you specify <code>anchorToWindow: true</code>, the splitter will adjust its size to fill the remaining height of the browser window. This feature is used in the <a href="3psplitter.html">3-Pane</a> and <a href="3csplitter.html">3-Column</a> demos. As with <code>resizeOnWindow</code>, this will also make the splitter resize itself when the window.resize event fires. Note: This option requires you to include the jQuery dimensions plugin.
 </dd>
 
-<dt>cookie</dt>
-<dd>
-The splitter plugin can  save and retrieve the last position of the splitbar using cookies. To use this feature, specify the name of a cookie to use via the <code>cookie</code> property. If no cookie property is used or the cookie is missing, the splitbar will initialize to its normal initial state as specified by the <code>sizeLeft/Right/Top/Bottom</code> properties each time the page is loaded.</dd>
-
-<dt>cookieExpires, cookiePath</dt>
-<dd>
-When a <code>cookie</code> is given, <code>cookieExpires</code> specifies the number of days before the cookie expires. By default it is 365 days. Similarly, <code>cookiePath</code> specifies the path for the cookie. By default it is <code>document.location.pathname</code>, so that the cookie for the splitter information is only sent to the site when that specific URL is visited.
-</dd>
-
 <dt>cursor</dt>
 <dd>
-By default, the splitter plugin does not use a custom cursor while the mouse is hovering over the splitbar. You can define the <code>cursor</code> property when creating the splitter. Alternatively, you can specify one by adding the <code>cursor</code> CSS property to the <code>vsplitbar</code> or <code>hsplitbar</code> styles, as shown in most of the demos.
+By default, the splitter plugin does not use a custom cursor while the mouse is hovering over the splitbar. You can define the <code>cursor</code> property when creating the splitter. Alternatively, you can specify one by adding the <code>cursor</code> CSS property to the <code>splitter-bar-vertical</code> or <code>splitter-bar-horizontal</code> styles, as shown in most of the demos.
 </dd>
 
 <dt>minLeft, minRight, minTop, minBottom, maxLeft, maxRight, maxTop, maxBottom</dt>
@@ -239,7 +230,7 @@ Define one (and only one) of these properties to set the size of a pane and thus
 
 <dt>splitbarClass</dt>
 <dd>
-The plugin adds the splitbar element to the splitter container and sets a class name on the element so that it can be referenced in stylesheet rules. By default the class name is <code>"vsplitbar"</code> for vertical splitters and <code>"hsplitbar"</code> for horizontal ones.
+The plugin adds the splitbar element to the splitter container and sets a class name on the element so that it can be referenced in stylesheet rules. By default the class name is <code>"splitter-bar-vertical"</code> for vertical splitters and <code>"splitter-bar-horizontal"</code> for horizontal ones.
 </dd>
 
 <dt>splitbarKey</dt>

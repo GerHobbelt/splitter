@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>jQuery Vertical Splitter</title>
 <script type="text/javascript" src="../lib/jquery.js"></script>
-<script type="text/javascript" src="../lib/jquery.cookie.js"></script>
 <script type="text/javascript" src="../splitter.js"></script>
 
 <!-- General page styles (not critical to the demos) -->
@@ -73,11 +72,24 @@ function makeSplitter()
         resizeToWidth: true,
         dock: "right",
         dockSpeed: 200,
-        cookie: "docksplitter",
         dockKey: 'Z',   // Alt-Shift-Z in FF/IE
         accessKey: 'I'  // Alt-Shift-I in FF/IE
     });
 }
+
+function MyToggleDock() {
+    $('#MySplitter').trigger('toggleDock');
+}
+function MyDock() {
+    $('#MySplitter').trigger('dock');
+}
+function MyUndock() {
+    $('#MySplitter').trigger('undock');
+}
+function MyDestroy() {
+    $('#MySplitter').trigger('destroy');
+}
+
 </script>
 </head>
 <body>
@@ -99,10 +111,10 @@ whenever the splitbar is undocked.
         <p>This is the left side of the vertical splitter. Typically you might use this side for a navigational display of some data that is related to the right side.</p>
         <p>Using CSS styles you can control the look of the splitter, such as its color, width, and appearance when selected. Or, you can specify most options when you call the plugin to create the splitter.</p>
     
-        <p><a href="javascript:void($('#MySplitter').trigger('toggleDock'))">trigger toggleDock</a></p>
-        <p><a href="javascript:void($('#MySplitter').trigger('dock'))">trigger dock</a></p>
-        <p><a href="javascript:void($('#MySplitter').trigger('undock'))">trigger undock</a></p>
-        <p><a href="javascript:void($('#MySplitter').trigger('destroy'))">trigger destroy</a></p>
+        <p><a href="javascript:MyToggleDock();">trigger toggleDock</a></p>
+        <p><a href="javascript:MyDock();">trigger dock</a></p>
+        <p><a href="javascript:MyUndock();">trigger undock</a></p>
+        <p><a href="javascript:MyDestroy();">trigger destroy</a></p>
         
     </div>
     
@@ -115,11 +127,10 @@ whenever the splitbar is undocked.
 
         <p>The splitter plugin supports the use of the keyboard to move the splitbar via the browser's accessKey feature. To move the splitbar in IE or Firefox, press <kbd>Alt-Shift-L</kbd>, then press the arrow keys. To unfocus the splitbar, press <kbd>Tab</kbd>. In Opera, press <kbd>Shift-Esc</kbd> and then the letter <kbd>L</kbd>; remove focus with <kbd>Esc</kbd>.</p>
         
-        <p><a href="javascript:void($('#MySplitter').trigger('toggleDock'))">trigger toggleDock</a></p>
-        <p><a href="javascript:void($('#MySplitter').trigger('dock'))">trigger dock</a></p>
-        <p><a href="javascript:void($('#MySplitter').trigger('undock'))">trigger undock</a></p>
-        <p><a href="javascript:void($('#MySplitter').trigger('destroy'))">trigger destroy</a></p>
-
+        <p><a href="javascript:MyToggleDock();">trigger toggleDock</a></p>
+        <p><a href="javascript:MyDock();">trigger dock</a></p>
+        <p><a href="javascript:MyUndock();">trigger undock</a></p>
+        <p><a href="javascript:MyDestroy();">trigger destroy</a></p>
         
     </div>
 
