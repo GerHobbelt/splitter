@@ -66,8 +66,8 @@
 
             function setBarState(state) {
                 bar
-		.removeClass(opts.barStateClasses)
-		.addClass(state);
+                .removeClass(opts.barStateClasses)
+                .addClass(state);
             }
 
             function startSplitMouse(evt) {
@@ -225,8 +225,9 @@
                 tabIndex: 0, // tab order indicator
                 accessKey: '', // accessKey for splitbar
                 dockSpeed: 1,
-                undockSpeed: 1
-                cookieExpires: 365
+                undockSpeed: 1,
+                dockEase: null,
+                undockEase: null
             }, {
                 // user can override
                 v: { // Vertical splitters:
@@ -360,26 +361,11 @@
                              : opts["size" + this._pane];
             });
 
-            // Determine initial position, get from cookie if specified
+            // Determine initial position
             var initPos = A._init;
             if (!isNaN(B._init)) { 
                 // recalc initial B size as an offset from the top or left side
                 initPos = splitter[0][opts.pxSplit] - splitter._PBA - B._init - bar._DA;
-            }
-            if (opts.cookie) {
-                if (!$.cookie) {
-                    alert('jQuery.splitter(): jQuery cookie plugin required');
-                }
-                if ($.cookie(opts.cookie) !== null) {
-                    initPos = parseInt($.cookie(opts.cookie), 10);
-                }
-                $(window).bind("unload" + opts.eventNamespace, function() {
-                    var state = String(bar.css(opts.origin)); // current location of splitbar
-                    $.cookie(opts.cookie, state, {
-                        expires: opts.cookieExpires || 365,
-                        path: opts.cookiePath || document.location.pathname
-                    });
-                });
             }
             if (isNaN(initPos)) {
                 // King Solomon's algorithm
