@@ -65,7 +65,9 @@
             var zombie; // left-behind splitbar for outline resizes
 
             function setBarState(state) {
-                bar.removeClass(opts.barStateClasses).addClass(state);
+                bar
+		.removeClass(opts.barStateClasses)
+		.addClass(state);
             }
 
             function startSplitMouse(evt) {
@@ -102,9 +104,13 @@
                     // Let docking splitbar be dragged to the dock position, even if min width applies
                     if ((opts.dockPane == A && pos < Math.max(A._min, bar._DA)) ||
                         (opts.dockPane == B && pos > Math.min(pos, A._max, splitter._DA - bar._DA - B._min))) {
-                        bar.addClass(opts.barDockedClass).css(opts.origin, range);
+                        bar
+			.addClass(opts.barDockedClass)
+			.css(opts.origin, range);
                     } else {
-                        bar.removeClass(opts.barDockedClass).css(opts.origin, limit);
+                        bar
+			.removeClass(opts.barDockedClass)
+			.css(opts.origin, limit);
                     }
                     bar._DA = bar[0][opts.pxSplit];
                 } else {
@@ -217,7 +223,10 @@
                 eventNamespace: ".splitter" + (++splitterCounter),
                 pxPerKey: 8, // splitter px moved per keypress
                 tabIndex: 0, // tab order indicator
-                accessKey: '' // accessKey for splitbar
+                accessKey: '', // accessKey for splitbar
+                dockSpeed: 1,
+                undockSpeed: 1
+                cookieExpires: 365
             }, {
                 // user can override
                 v: { // Vertical splitters:
@@ -279,7 +288,7 @@
             opts.dockPane = opts.dock && (/right|bottom/.test(opts.dock) ? B : A);
 
             // Focuser element, provides keyboard support; title is shown by Opera accessKeys
-            var focuser = $('<a href="javascript:void(0)"></a>')
+            var focuser = $('<a />')
                 .attr({
                     accessKey: opts.accessKey,
                     tabIndex: opts.tabIndex,
@@ -289,19 +298,21 @@
                     this.focus();
                     bar.addClass(opts.barActiveClass);
                 })
-                .bind("keydown" + opts.eventNamespace, function(e) {
-                    var key = e.which || e.keyCode;
-                    var dir = key == opts["key" + opts.side1] ? 1 : key == opts["key" + opts.side2] ? -1 : 0;
-                    if (dir) {
-                        resplit(A[0][opts.pxSplit] + dir * opts.pxPerKey);
-                    }
-                })
                 .bind("blur" + opts.eventNamespace, function() {
                     bar.removeClass(opts.barActiveClass);
                 });
+           if (opts.accessKey !== '') {
+                focuser.bind("keydown" + opts.eventNamespace, function(e) {
+                    var key = e.which || e.keyCode;
+                    var dir = key === opts["key" + opts.side1] ? 1 : key === opts["key" + opts.side2] ? -1 : 0;
+                    if (dir) {
+                        resplit(A[0][opts.pxSplit] + dir * opts.pxPerKey);
+                    }
+                });
+            }
 
             // Splitbar element
-            var bar = $('<div></div>')
+            var bar = $('<div />')
                 .insertAfter(A)
                 .addClass(opts.barClass)
                 .addClass(opts.barStateClass)
@@ -433,7 +444,7 @@
                 });
 
                 if (opts.dockKey) {
-                    $('<a title="' + opts.splitbarClass + ' toggle dock" href="javascript:void(0)"></a>')
+                    $('<a title="' + opts.splitbarClass + ' toggle dock"></a>')
                     .attr({
                         accessKey: opts.dockKey,
                         tabIndex: -1
