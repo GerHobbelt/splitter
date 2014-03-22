@@ -295,7 +295,7 @@
                     tabIndex: opts.tabIndex,
                     title: opts.splitbarClass
                 })
-                .bind(browserDetect === 'opera' ? 'click' : 'focus') + opts.eventNamespace, function() {
+                .bind((browserDetect === 'opera' ? 'click' : 'focus') + opts.eventNamespace, function() {
                     this.focus();
                     bar.addClass(opts.barActiveClass);
                 })
@@ -434,8 +434,9 @@
                     .attr({
                         accessKey: opts.dockKey,
                         tabIndex: -1
-                    }).appendTo(bar);
-                    .bind(browserDetect === 'opera' ? 'click' : 'focus', function () {
+                    })
+                    .appendTo(bar)
+                    .bind((browserDetect === 'opera' ? 'click' : 'focus'), function () {
                         splitter.triggerHandler("toggleDock");
                         this.blur();
                     });
